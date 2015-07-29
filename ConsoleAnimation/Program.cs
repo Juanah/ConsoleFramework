@@ -30,7 +30,12 @@ namespace ConsoleAnimation
             }
             else
             {
-                _consoleManager.Run(false);
+                _consoleManager.Run(true);
+                _consoleManager.RawInput("hallo");
+                while (true)
+                {
+                    Console.ReadKey();
+                }
             }
         }
 

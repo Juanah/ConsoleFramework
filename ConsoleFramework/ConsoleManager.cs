@@ -22,6 +22,9 @@ namespace ConsoleFramework
         private TextReader _consoleReader;
         private TextWriter _consoleWriter;
         private CommandParser _commandParser;
+        private delegate void UserInput(string value);
+
+        private event UserInput _onUserInput;
         public ConsoleManager(IList<Command> allCommands, TextReader consoleReader, TextWriter consoleWriter)
         {
             _allCommands = allCommands;
@@ -46,6 +49,15 @@ namespace ConsoleFramework
             
         }
 
+        public void RawInput(string command)
+        {
+            if (_onUserInput == null)
+            {
+                return;
+            }
+            _onUserInput(command);
+        }
+
         public bool RegisterCommandEvent(Command command,EventHandler commandTask)
         {
             if (_eventList.ContainsKey(command))
@@ -63,6 +75,19 @@ namespace ConsoleFramework
 
         void ConsoleParsingTaks(object state)
         {
+            _onUserInput += delegate(string value)
+            {
+                var commands = _commandParser.ParseCommands(value);
+                foreach (var command in commands)
+                {
+                    var tempEventHandler = getEventHandlerFromCommand(command);
+                    if (tempEventHandler == null)
+                    {
+                        continue;
+                    }
+                    tempEventHandler(this, new CommandEventArgs { Command = command });
+                }
+            };
             while (true)
             {
                 var consoleInput = _consoleReader.ReadLine();

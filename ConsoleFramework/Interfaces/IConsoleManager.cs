@@ -13,6 +13,7 @@ namespace ConsoleFramework.Interfaces
         /// </summary>
         /// <param name="threaded"></param>
         void Run(bool threaded);
+        void RawInput(string command);
         bool RegisterCommandEvent(Command command,EventHandler commandTask);
         bool UnRegisterCommandEvent(Command command);
         //EventHandler RegisterCommandEvent(Command command);
