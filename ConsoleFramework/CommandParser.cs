@@ -12,7 +12,7 @@ namespace ConsoleFramework
     /// Converts Raw userinput to Commands
     /// Jonas Ahlf 29.07.2015 20:08:53
     /// </summary>
-    internal class CommandParser
+    public class CommandParser
     {
         private readonly List<Command> _allCommands;
 
@@ -43,7 +43,7 @@ namespace ConsoleFramework
 
         #region Member
 
-        internal IList<Command> ParseCommands(string rawInput)
+        public IList<Command> ParseCommands(string rawInput)
         {
             if (String.IsNullOrWhiteSpace(rawInput))
             {
@@ -79,7 +79,7 @@ namespace ConsoleFramework
             return parsedCommands;
         }
 
-        IList<CommandName> GetCommandNames(string rawInput)
+        public IList<CommandName> GetCommandNames(string rawInput)
         {
             IList<CommandName> parsedCommands = new List<CommandName>();
 
@@ -128,12 +128,14 @@ namespace ConsoleFramework
                         continue;
                     }
 
-                    name = rawInput.Substring(0, firstWhitespace);
+                    name = rawInput.Substring(0, firstWhitespace + 1);
                     if (String.IsNullOrWhiteSpace(name))
                     {
                         return parsedCommands;
                     }
                     cleanedString = parsedCommand.RawString.Replace(name + " ", "");
+                    name = name.TrimEnd(' ');
+                    name = name.TrimStart(' ');
                     parsedCommand.Name = name;
                     parsedCommand.CleanInput = cleanedString;
                     parsedCommand.Success = true;
@@ -148,7 +150,7 @@ namespace ConsoleFramework
             return parsedCommands;
         }
 
-        private ValidatedCommand ValidateCommand(CommandName commandName)
+        public ValidatedCommand ValidateCommand(CommandName commandName)
         {
             var command = _allCommands.FirstOrDefault(cn => cn.Name.ToLower().Equals(commandName.Name.ToLower()));
             if (command == null)
@@ -159,7 +161,7 @@ namespace ConsoleFramework
             return new ValidatedCommand { FoundCommand = command, CloneCommand = clone };
         }
 
-        private IList<Option> GetOptions(CommandName name, Command command)
+        public IList<Option> GetOptions(CommandName name, Command command)
         {
             if (!name.CleanInput.Contains('-'))
             {
@@ -221,7 +223,7 @@ namespace ConsoleFramework
             return options;
         }
 
-        private IList<Parameter> GetParameters(string cleanParameterString)
+        public IList<Parameter> GetParameters(string cleanParameterString)
         {
             if (String.IsNullOrWhiteSpace(cleanParameterString))
             {
@@ -248,7 +250,7 @@ namespace ConsoleFramework
             return parameters;
         }
 
-        private Command CreateCleanCommandClone(Command command)
+        public Command CreateCleanCommandClone(Command command)
         {
             var clone = new Command();
             clone = Mapper.Map(command, clone);
@@ -258,7 +260,7 @@ namespace ConsoleFramework
 
     }
 
-    internal class CommandName
+    public class CommandName
     {
         public string Name { get; set; }
         public string CleanInput { get; set; }
@@ -266,7 +268,7 @@ namespace ConsoleFramework
         public bool Success { get; set; }
     }
 
-    internal class ValidatedCommand
+    public class ValidatedCommand
     {
         public Command FoundCommand { get; set; }
         public Command CloneCommand { get; set; }
