@@ -19,7 +19,7 @@ namespace ConsoleFramework
         private IList<Option> _options;
         private IList<Parameter> _parameters;
         private bool _hasOptions, _hasParamertes;
-        public string Name { get { return _name; } }
+        public string Name { get { return _name; } set { _name = value; } }
         public CaseLevel CaseLevel { get { return _caseLevel; } }
         public IList<Option> Options { get { return _options; } set { _options = value; }}
         public IList<Parameter> Parameters { get { return _parameters; } }

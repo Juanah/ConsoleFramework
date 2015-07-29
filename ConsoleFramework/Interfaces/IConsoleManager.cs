@@ -8,7 +8,11 @@ namespace ConsoleFramework.Interfaces
 {
     public interface IConsoleManager
     {
-        void Run();
+        /// <summary>
+        /// Starts the framework
+        /// </summary>
+        /// <param name="threaded"></param>
+        void Run(bool threaded);
         bool RegisterCommandEvent(Command command,EventHandler commandTask);
         bool UnRegisterCommandEvent(Command command);
         //EventHandler RegisterCommandEvent(Command command);

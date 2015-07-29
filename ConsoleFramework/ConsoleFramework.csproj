@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="CommandParser.cs" />
+    <Compile Include="ConsoleBuilder.cs" />
     <Compile Include="ConsoleManager.cs" />
     <Compile Include="Data\CaseLevel.cs" />
     <Compile Include="Data\CommandEventArgs.cs" />

@@ -86,7 +86,7 @@ namespace ConsoleFramework
 
             if (!rawInput.Contains("&&"))
             {
-                parsedCommands.Add(new CommandName { RawString = rawInput });
+                parsedCommands.Add(new CommandName { RawString = rawInput});
             }
             else
             {
@@ -110,7 +110,15 @@ namespace ConsoleFramework
                 {
                     int firstWhitespace = parsedCommand.RawString.IndexOf(' ');
 
-                    name = rawInput.Substring(0, firstWhitespace - 1);
+                    if (firstWhitespace == -1)
+                    {
+                        parsedCommand.Name = parsedCommand.RawString;
+                        parsedCommand.CleanInput = String.Empty;
+                        parsedCommand.Success = true;
+                        continue;
+                    }
+
+                    name = rawInput.Substring(0, firstWhitespace);
                     if (String.IsNullOrWhiteSpace(name))
                     {
                         return parsedCommands;
