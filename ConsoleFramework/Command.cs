@@ -21,12 +21,17 @@ namespace ConsoleFramework
         private bool _hasOptions, _hasParamertes;
         public string Name { get { return _name; } }
         public CaseLevel CaseLevel { get { return _caseLevel; } }
-        public IList<Option> Options { get { return _options; } }
+        public IList<Option> Options { get { return _options; } set { _options = value; }}
         public IList<Parameter> Parameters { get { return _parameters; } }
         public bool HasOptions { get { return _hasOptions; } }
         public bool HasParameters { get { return _hasParamertes; } }
 
         #region Constructor
+
+        public Command()
+        {
+        }
+
         public Command(string name, CaseLevel caseLevel)
         {
             _name = name;
