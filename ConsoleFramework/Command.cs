@@ -23,7 +23,13 @@ namespace ConsoleFramework
         public CaseLevel CaseLevel { get { return _caseLevel; } }
         public IList<Option> Options { get { return _options; } set { _options = value; }}
         public IList<Parameter> Parameters { get { return _parameters; } }
-        public bool HasOptions { get { return _hasOptions; } }
+
+        public bool HasOptions
+        {
+            get { return _hasOptions; }
+            set { _hasOptions = value; }
+        }
+
         public bool HasParameters { get { return _hasParamertes; } }
 
         #region Constructor

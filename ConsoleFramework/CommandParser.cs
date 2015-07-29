@@ -68,6 +68,10 @@ namespace ConsoleFramework
                     {
                         validateCommand.CloneCommand.Options = options;
                     }
+                    else
+                    {
+                        validateCommand.CloneCommand.HasOptions = false;
+                    }
                 }
                 parsedCommands.Add(validateCommand.CloneCommand);
             }
@@ -108,6 +112,12 @@ namespace ConsoleFramework
                 string cleanedString;
                 try
                 {
+                    while (parsedCommand.RawString.IndexOf(' ') == 0)
+                    {
+                        parsedCommand.RawString = parsedCommand.RawString.TrimStart(' ');
+                    }
+
+
                     int firstWhitespace = parsedCommand.RawString.IndexOf(' ');
 
                     if (firstWhitespace == -1)
@@ -163,11 +173,22 @@ namespace ConsoleFramework
             var options = new List<Option>();
             foreach (var rawOption in rawOptions)
             {
+                if (string.IsNullOrWhiteSpace(rawOption))
+                {
+                    continue;
+                }
                 string optionName = String.Empty;
                 try
                 {
                     int firstWhitespace = rawOption.IndexOf(' ');
-                    optionName = rawOption.Substring(0, firstWhitespace - 1);
+                    if (firstWhitespace == -1)
+                    {
+                        optionName = rawOption;
+                    }
+                    else
+                    {
+                        optionName = rawOption.Substring(0, firstWhitespace);
+                    }
                 }
                 catch
                 {
