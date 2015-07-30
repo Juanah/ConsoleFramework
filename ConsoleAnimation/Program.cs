@@ -87,8 +87,8 @@ namespace ConsoleAnimation
             _firstCommand = new Command("hallo");
             _firstOption = new Option {HaveParameters = false, Identifier = "f", Parameters = null};
             _parameterOption = new Option {HaveParameters = true,Identifier = "p"};
-            _secondCommand = new Command("copy",new[]{_firstOption});
-            _parameterCommand = new Command("pm",new []{_parameterOption});
+            _secondCommand = new Command("copy",new[]{_firstOption},false);
+            _parameterCommand = new Command("pm",new []{_parameterOption},true);
             _consoleManager = _consoleBuilder.Build(new[] { _firstCommand,_secondCommand ,_parameterCommand});
 
         }

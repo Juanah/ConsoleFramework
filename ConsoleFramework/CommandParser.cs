@@ -32,8 +32,7 @@ namespace ConsoleFramework
         private void CreateCommandMappings() //Creates Automapper mappings for cloning Commands
         {
             Mapper.CreateMap<Command, Command>()
-                .ForMember(s => s.Options, d => d.Ignore())
-                .ForMember(s => s.Parameters, d => d.Ignore());
+                .ForMember(s => s.Options, d => d.Ignore());
             Mapper.CreateMap<Option, Option>()
                 .ForMember(s => s.Parameters, d => d.Ignore());
         }

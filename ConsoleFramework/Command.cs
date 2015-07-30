@@ -16,11 +16,9 @@ namespace ConsoleFramework
     {
         private string _name;
         private IList<Option> _options;
-        private IList<Parameter> _parameters;
         private bool _hasOptions, _hasParamertes;
         public string Name { get { return _name; } set { _name = value; } }
         public IList<Option> Options { get { return _options; } set { _options = value; }}
-        public IList<Parameter> Parameters { get { return _parameters; } }
 
         public bool HasOptions
         {
@@ -43,27 +41,12 @@ namespace ConsoleFramework
             _hasParamertes = false;
         }
 
-        public Command(string name, IList<Option> options, IList<Parameter> parameters)
-        {
-            _name = name;
-            _options = options;
-            _parameters = parameters;
-            _hasOptions = true;
-            _hasParamertes = true;
-        }
-
-        public Command(string name, IList<Option> options)
+        public Command(string name, IList<Option> options,bool hasParameters)
         {
             _name = name;
             _options = options;
             _hasOptions = true;
-        }
-
-        public Command(string name, IList<Parameter> parameters)
-        {
-            _name = name;
-            _parameters = parameters;
-            _hasParamertes = true;
+            _hasParamertes = hasParameters;
         }
         #endregion
     }
