@@ -128,12 +128,14 @@ namespace ConsoleFramework
                         continue;
                     }
 
-                    name = rawInput.Substring(0, firstWhitespace);
+                    name = parsedCommand.RawString.Substring(0, firstWhitespace + 1);
                     if (String.IsNullOrWhiteSpace(name))
                     {
                         return parsedCommands;
                     }
                     cleanedString = parsedCommand.RawString.Replace(name + " ", "");
+                    name = name.TrimEnd(' ');
+                    name = name.TrimStart(' ');
                     parsedCommand.Name = name;
                     parsedCommand.CleanInput = cleanedString;
                     parsedCommand.Success = true;
