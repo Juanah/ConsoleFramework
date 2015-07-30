@@ -128,7 +128,7 @@ namespace ConsoleFramework
                         continue;
                     }
 
-                    name = rawInput.Substring(0, firstWhitespace + 1);
+                    name = parsedCommand.RawString.Substring(0, firstWhitespace + 1);
                     if (String.IsNullOrWhiteSpace(name))
                     {
                         return parsedCommands;

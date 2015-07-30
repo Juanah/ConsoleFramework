@@ -91,6 +91,10 @@ namespace ConsoleFramework
             while (true)
             {
                 var consoleInput = _consoleReader.ReadLine();
+                if (String.IsNullOrWhiteSpace(consoleInput))
+                {
+                    continue;
+                }
                 var commands = _commandParser.ParseCommands(consoleInput);
                 foreach (var command in commands)
                 {
