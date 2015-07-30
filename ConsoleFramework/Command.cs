@@ -15,12 +15,10 @@ namespace ConsoleFramework
     public class Command
     {
         private string _name;
-        private CaseLevel _caseLevel;
         private IList<Option> _options;
         private IList<Parameter> _parameters;
         private bool _hasOptions, _hasParamertes;
         public string Name { get { return _name; } set { _name = value; } }
-        public CaseLevel CaseLevel { get { return _caseLevel; } }
         public IList<Option> Options { get { return _options; } set { _options = value; }}
         public IList<Parameter> Parameters { get { return _parameters; } }
 
@@ -38,36 +36,32 @@ namespace ConsoleFramework
         {
         }
 
-        public Command(string name, CaseLevel caseLevel)
+        public Command(string name)
         {
             _name = name;
-            _caseLevel = caseLevel;
             _hasOptions = false;
             _hasParamertes = false;
         }
 
-        public Command(string name, CaseLevel caseLevel, IList<Option> options, IList<Parameter> parameters)
+        public Command(string name, IList<Option> options, IList<Parameter> parameters)
         {
             _name = name;
-            _caseLevel = caseLevel;
             _options = options;
             _parameters = parameters;
             _hasOptions = true;
             _hasParamertes = true;
         }
 
-        public Command(string name, CaseLevel caseLevel, IList<Option> options)
+        public Command(string name, IList<Option> options)
         {
             _name = name;
-            _caseLevel = caseLevel;
             _options = options;
             _hasOptions = true;
         }
 
-        public Command(string name, CaseLevel caseLevel, IList<Parameter> parameters)
+        public Command(string name, IList<Parameter> parameters)
         {
             _name = name;
-            _caseLevel = caseLevel;
             _parameters = parameters;
             _hasParamertes = true;
         }

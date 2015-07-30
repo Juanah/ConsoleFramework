@@ -49,7 +49,6 @@
     <Compile Include="CommandParser.cs" />
     <Compile Include="ConsoleBuilder.cs" />
     <Compile Include="ConsoleManager.cs" />
-    <Compile Include="Data\CaseLevel.cs" />
     <Compile Include="Data\CommandEventArgs.cs" />
     <Compile Include="Data\Option.cs" />
     <Compile Include="Data\Parameter.cs" />

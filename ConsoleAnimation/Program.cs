@@ -84,11 +84,11 @@ namespace ConsoleAnimation
 
         static void CreateManager()
         {
-            _firstCommand = new Command("hallo", CaseLevel.Low);
+            _firstCommand = new Command("hallo");
             _firstOption = new Option {HaveParameters = false, Identifier = "f", Parameters = null};
             _parameterOption = new Option {HaveParameters = true,Identifier = "p"};
-            _secondCommand = new Command("copy",CaseLevel.Non,new[]{_firstOption});
-            _parameterCommand = new Command("pm",CaseLevel.Low,new []{_parameterOption});
+            _secondCommand = new Command("copy",new[]{_firstOption});
+            _parameterCommand = new Command("pm",new []{_parameterOption});
             _consoleManager = _consoleBuilder.Build(new[] { _firstCommand,_secondCommand ,_parameterCommand});
 
         }
